@@ -1,8 +1,14 @@
 
 import subprocess,os
-import imp
+import importlib.util
+import os.path
+
 def TTSnorm(text, punc = False, unknown = True, lower = True, rule = False ):
-    A=imp.find_module('vinorm')[1]
+    # Get the directory where the vinorm module is located
+    spec = importlib.util.find_spec('vinorm')
+    if spec is None or spec.origin is None:
+        raise ImportError("Could not locate vinorm module")
+    A = os.path.dirname(spec.origin)
 
     #print(A)
     I=A+"/input.txt"
@@ -12,7 +18,7 @@ def TTSnorm(text, punc = False, unknown = True, lower = True, rule = False ):
     myenv = os.environ.copy()
     myenv['LD_LIBRARY_PATH'] = A+'/lib'
 
-    E=A+"/main"
+    E=A+"/main.exe"
     Command = [E]
     if punc:
         Command.append("-punc")
