@@ -3,6 +3,7 @@ include README.md
 include vinorm/input.txt
 include vinorm/output.txt
 include vinorm/main
+include vinorm/main.exe
 recursive-include vinorm/Dict *
 recursive-include vinorm/lib *
 recursive-include vinorm/Mapping *
